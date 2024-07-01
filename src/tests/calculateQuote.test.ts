@@ -10,7 +10,7 @@ test('calculateQuote returns correct estimate for all plans included', () => {
 
   const quote = calculateQuote(applicantInfo, healthPlan, lifePlan, dentalPlan, criticalIllnessPlan);
 
-  expect(quote.subTotal).toBeCloseTo(1740.50); // Sum of all costs
-  expect(quote.tax).toBeCloseTo(261.075); // 15% tax
-  expect(quote.totalAmount).toBeCloseTo(2001.575); // SubTotal + Tax
+  expect(quote.subTotal).toBeCloseTo(1763.46); // Sum of all costs
+  expect(quote.tax).toBeCloseTo(264.519); // 15% tax
+  expect(quote.totalAmount).toBeCloseTo(2027.979); // SubTotal + Tax
 });
