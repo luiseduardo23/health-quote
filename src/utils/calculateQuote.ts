@@ -7,12 +7,15 @@ export function calculateQuote(
   dentalPlan?: DentalPlan,
   criticalIllnessPlan?: CriticalIllnessPlan
 ): Quote {
-  const subTotal = healthPlan.cost +
-    (lifePlan ? lifePlan.cost : 0) +
-    (dentalPlan && dentalPlan.included ? dentalPlan.cost : 0) +
-    (criticalIllnessPlan && criticalIllnessPlan.included ? criticalIllnessPlan.cost : 0);
+  //business logic
+  const healthPlanTotal = healthPlan.insuredPrimary + healthPlan.spouse + healthPlan.children;
+  const lifePlanTotal = lifePlan ? lifePlan.cost : 0;
+  const dentalPlanTotal = dentalPlan && dentalPlan.included ? dentalPlan.cost : 0;
+  const criticalIllnessPlanTotal = criticalIllnessPlan && criticalIllnessPlan.included ? criticalIllnessPlan.cost : 0;
 
-  const tax = subTotal * 0.15; // Example of 15% tax
+  const subTotal = healthPlanTotal + lifePlanTotal + dentalPlanTotal + criticalIllnessPlanTotal;
+
+  const tax = subTotal * 0.15; // 15% tax
   const totalAmount = subTotal + tax;
 
   return {
